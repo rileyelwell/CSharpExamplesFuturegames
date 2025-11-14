@@ -16,12 +16,14 @@ public class SimpleStartExampleTwo : MonoBehaviour, IService {
         monoServiceTwo = Instantiate(monoServiceTwoPrefab, simpleStartGameObject.transform); // it automatically implies creates the object and adds the component
 
         ServiceLocator.Instance.RegisterService(this);
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
 
     public void Initialize() {
         ServiceLocator.Instance.RegisterService(monoServiceOne);
         ServiceLocator.Instance.RegisterService(monoServiceTwo);
+
+        SimpleStartExampleTwo myStartInstance = ServiceLocator.Instance.GetService<SimpleStartExampleTwo>();
     }
     public void Dispose() {
         ServiceLocator.Instance.RemoveService<MonoServiceOne>();
